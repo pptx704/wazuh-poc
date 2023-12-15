@@ -28,6 +28,8 @@ sudo sysctl -w vm.max_map_count=262144
 ```bash
 docker-compose -f generate-indexer-certs.yml run --rm generator
 ```
+- Update the Maltiverse API key inside `wazuh-config/manager_conf/ossec.conf` file
+- Change environment variables inside `docker-compose.yml` file as needed
 - Start the Docker containers
 ```bash
 docker-compose up -d
@@ -38,5 +40,5 @@ source prepare.sh
 ```
 - Emulate the attacks
 ```bash
-source run.sh
+source emulate-attack.sh
 ```
