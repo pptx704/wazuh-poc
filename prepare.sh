@@ -18,3 +18,6 @@ update_manager(){
     docker exec -it $containerId sh -c "cat /tmp/config/local_rules.xml > /var/ossec/etc/rules/local_rules.xml"
     docker exec -it $containerId sh -c "service wazuh-manager restart"
 }
+
+update_agent
+update_manager
