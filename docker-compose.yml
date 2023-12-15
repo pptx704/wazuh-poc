@@ -40,9 +40,9 @@ services:
       - wazuh_wodles:/var/ossec/wodles
       - filebeat_etc:/etc/filebeat
       - filebeat_var:/var/lib/filebeat
-      # - ./wazuh-config/manager_conf/ossec.conf:/var/ossec/etc/ossec.conf
-      # - ./wazuh-config/manager_conf/local_decoder.xml:/var/ossec/etc/decoders/local_decoder.xml
-      # - ./wazuh-config/manager_conf/local_rules.xml:/var/ossec/etc/rules/local_rules.xml
+      - ./wazuh-config/manager_conf/ossec.conf:/tmp/config/ossec.conf
+      - ./wazuh-config/manager_conf/local_decoder.xml:/tmp/config/local_decoder.xml
+      - ./wazuh-config/manager_conf/local_rules.xml:/tmp/config/local_rules.xml
       - ./wazuh-config/wazuh_indexer_ssl_certs/root-ca-manager.pem:/etc/ssl/root-ca.pem
       - ./wazuh-config/wazuh_indexer_ssl_certs/wazuh.manager.pem:/etc/ssl/filebeat.pem
       - ./wazuh-config/wazuh_indexer_ssl_certs/wazuh.manager-key.pem:/etc/ssl/filebeat.key
@@ -55,7 +55,8 @@ services:
     ports:
       - "9200:9200"
     environment:
-      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "OPENSEARCH_JAVA_OPTS=-Xms1024m -Xmx1024m"
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
     ulimits:
       memlock:
         soft: -1
@@ -108,96 +109,19 @@ services:
       - WAZUH_MANAGER=wazuh.manager
       - MANGER_IP=wazuh.manager
     volumes:
-      - wazuh-agent-bin:/var/ossec/active-response/bin/
-      - ./wazuh-config/wazuh_agent/ossec.conf:/var/ossec/etc/ossec.conf
+      - ./wazuh-config/wazuh_agent/ossec.conf:/tmp/config/ossec.conf
 volumes:
   wazuh_api_configuration:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wazuh-local-volumes/wazuh_api_configuration
   wazuh_etc:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wazuh-local-volumes/wazuh_etc
   wazuh_logs:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wazuh-local-volumes/wazuh_logs
   wazuh_queue:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wazuh-local-volumes/wazuh_queue
   wazuh_var_multigroups:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wazuh-local-volumes/wazuh_var_multigroups
   wazuh_integrations:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wazuh-local-volumes/wazuh_integrations
   wazuh_active_response:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wazuh-local-volumes/wazuh_active_response
   wazuh_agentless:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wazuh-local-volumes/wazuh_agentless
   wazuh_wodles:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wazuh-local-volumes/wazuh_wodles
   filebeat_etc:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wazuh-local-volumes/filebeat_etc
   filebeat_var:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wazuh-local-volumes/filebeat_var
   wazuh-indexer-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wazuh-local-volumes/wazuh-indexer-data
   wazuh-dashboard-config:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wazuh-local-volumes/wazuh-dashboard-config
   wazuh-dashboard-custom:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wazuh-local-volumes/wazuh-dashboard-custom
-  wazuh-agent-bin:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./linux-local-volumes/wazuh-agent-bin

@@ -34,3 +34,21 @@
   <regex>wazuh-yara: (\S+) - Scan result: (\S+) (\S+)</regex>
   <order>log_type, yara_rule, yara_scanned_file</order>
 </decoder>
+
+<decoder name="maltiverse_hostname">
+  <prematch>timestamp=</prematch>
+</decoder>
+<decoder name="maltiverse_hostname1">
+  <parent>maltiverse_hostname</parent>
+  <regex type="pcre2">timestamp=(.+?) identifier=(\w+) action=(\w+) .*? hostname: (\S+)</regex>
+  <order>log_timestamp, identifier, action, hostname</order>
+</decoder>
+
+<decoder name="squid_url">
+  <program_name>squid</program_name>
+</decoder>
+<decoder name="squid_url1">
+  <parent>squid_url</parent>
+  <regex type="pcre2">(\d+.\d+.\d+.\d+) TCP_MISS\/200 .*? GET (.*?) - DIRECT</regex>
+  <order>client_ip, url</order>
+</decoder>

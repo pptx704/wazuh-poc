@@ -25,7 +25,7 @@ service wazuh-agent start
 mkdir -p /tmp/yara/malware
 chmod +x /malware_downloader.sh
 
-
-service wazuh-agent restart
+# apache2
+service apache2 start
 
 sleep infinity

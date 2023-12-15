@@ -42,3 +42,30 @@
     <description>File "$(yara_scanned_file)" is a positive match. Yara rule: $(yara_rule)</description>
   </rule>
 </group>
+<group name="dns_query,maltiverse_hostname_test,">
+  <rule id="111041" level="5">
+    <decoded_as>maltiverse_hostname</decoded_as>
+    <description> The server $(identifier) making a DNS query.</description>
+  </rule>
+</group>
+
+<group name="squid_url,maltiverse_urltest">
+  <rule id="111042" level="6">
+    <decoded_as>squid_url</decoded_as>
+    <description> [SQUID URL] - $(client_ip) has accessed $(url)</description>
+  </rule>
+</group>
+
+<group name="maltiverse_sample_test">
+  <!-- Rules for Linux systems -->
+  <rule id="111050" level="7">
+    <if_sid>550</if_sid>
+    <field name="file">/tmp</field>
+    <description>File modified in /tmp directory.</description>
+    </rule>
+  <rule id="111051" level="7">
+    <if_sid>554</if_sid>
+    <field name="file">/tmp</field>
+    <description>File added to /tmp directory.</description>
+  </rule>
+</group>
