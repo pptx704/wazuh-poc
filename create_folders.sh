@@ -1,0 +1,15 @@
+mkdir -p ./wazuh-local-volumes/wazuh_api_configuration
+mkdir -p ./wazuh-local-volumes/wazuh_etc
+mkdir -p ./wazuh-local-volumes/wazuh_logs
+mkdir -p ./wazuh-local-volumes/wazuh_queue
+mkdir -p ./wazuh-local-volumes/wazuh_var_multigroups
+mkdir -p ./wazuh-local-volumes/wazuh_integrations
+mkdir -p ./wazuh-local-volumes/wazuh_active_response
+mkdir -p ./wazuh-local-volumes/wazuh_agentless
+mkdir -p ./wazuh-local-volumes/wazuh_wodles
+mkdir -p ./wazuh-local-volumes/filebeat_etc
+mkdir -p ./wazuh-local-volumes/filebeat_var
+mkdir -p ./wazuh-local-volumes/wazuh-indexer-data
+mkdir -p ./wazuh-local-volumes/wazuh-dashboard-config
+mkdir -p ./wazuh-local-volumes/wazuh-dashboard-custom
+mkdir -p ./linux-local-volumes/wazuh-agent-bin
